@@ -4,13 +4,13 @@
 let React = require('react');
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/list.js';
+import * as actions from '../actions/list.js';
 
 var CommentBox = React.createClass({
   render: function () {
-    console.log('this.props', this.props, this);
+    let {addItem,deleteItem,list} =this.props;
+    console.log('state', this.props.state);
     let add = ()=> {
-      console.log('add', typeof(addItem));
       addItem('test');
     };
 
@@ -21,10 +21,11 @@ var CommentBox = React.createClass({
       }
     };
 
-    let {addItem,deleteItem,list} =this.props;
+
     let data = JSON.stringify(list);
     return (
         <div className="commentBox">
+          <span>{this.props.state.loading.toString()}</span>
           <input type='submit' onClick={add} value="提交"/>
           <input type='submit' onClick={del} value="删除"/>
           {data}

@@ -6,21 +6,16 @@ import {applyMiddleware} from 'redux';
 import { Router, Route, Link, hashHistory,browserHistory } from 'react-router'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import api from './middleware/api.js';
 
-import IndexPage from './components/index/index.js';
-
+import IndexPage from './containers/index.js';
 import createStore from './stores/store.js';
 
-
 const logger = store => next => action => {
-  console.log('dispatching', action);
-
-  return next(action)._result;
+  next(action);
 };
 
-
-//var store = applyMiddleware(logger)(createStore)();
-var store = createStore();
+var store = applyMiddleware(logger, thunk, api)(createStore)();
 
 var routers = (
     <Provider store={store}>

@@ -2,7 +2,7 @@
  * Created by cuiweigang on 16/8/31.
  */
 
-import {ADD_ITEM,DELETE_ITEM} from '../../constants/actionType';
+import {ADD_ITEM,DELETE_ITEM} from '../../constants/actionType.js';
 let Promise = Promise || require('es6-promise').Promise;
 import http from '../../lib/http.js';
 
@@ -27,6 +27,7 @@ let deleteItem = (id, state)=> {
 };
 
 export default (state = [], action = null)=> {
+  console.log('444');
   switch (action.type) {
     case ADD_ITEM:
       return [...state, createItem(action.text)];
